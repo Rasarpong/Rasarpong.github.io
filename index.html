@@ -86,15 +86,17 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .hero{position:relative;isolation:isolate;overflow:hidden;background:var(--hero-bg);color:var(--hero-ink)}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-2;display:block}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--hero-veil) 0%,var(--hero-veil) 34%,var(--hero-veil-0) 74%)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,212px) minmax(0,1fr);gap:56px;align-items:center;padding-block:76px 40px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,256px) minmax(0,1fr);gap:56px;align-items:center;padding-block:76px 40px}
 .portrait{margin:0}
 .portrait-frame{aspect-ratio:4/5;max-width:100%;background:var(--hero-panel);border:1px solid var(--hero-frame);outline:1px solid var(--hero-frame);outline-offset:6px;display:grid;place-items:center;overflow:hidden}
 .portrait-frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:54% 40%}
 .monogram{font-family:var(--font-display);font-style:italic;font-weight:400;font-size:4.2rem;line-height:1;color:var(--hero-ink-2)}
 .portrait figcaption{margin-top:16px;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--hero-ink-3)}
-.hero-text{max-width:42rem;min-width:0}
+.hero-text{max-width:48rem;min-width:0;container-type:inline-size}
 .coord{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0;font-family:var(--font-mono);font-size:.76rem;letter-spacing:.05em;color:var(--hero-ink-3)}
-.hero h1{margin:16px 0 14px;font-family:var(--font-display);font-weight:500;font-size:clamp(2.5rem,1.5rem + 3.6vw,4.4rem);line-height:1.02;letter-spacing:-.015em;text-wrap:balance}
+/* the name is 13.6em wide in Newsreader 500, so 7% of the column keeps it on one line */
+.hero h1{margin:16px 0 14px;font-family:var(--font-display);font-weight:500;font-size:clamp(1.5rem,1rem + 2.6vw,3.4rem);font-size:clamp(1.5rem,7cqi,3.9rem);line-height:1.05;letter-spacing:-.015em;white-space:nowrap}
+.hero h1 .cred{color:var(--hero-ink-2)}
 .role{margin:0;font-size:1.06rem;line-height:1.55;color:var(--hero-ink-2);max-width:50ch}
 .role strong{color:var(--hero-ink);font-weight:600}
 .bio{margin:20px 0 0;max-width:60ch;color:var(--hero-ink);opacity:.92}
@@ -111,13 +113,15 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .hero.has-perimeter .legend{display:flex}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .legend .l-line{color:var(--hero-line)} .legend .l-ember{color:var(--hero-ember)} .legend .l-dot{color:var(--hero-dot)}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:30px;padding-block:48px 36px}
+  .portrait{max-width:184px}
+}
 @media (max-width:759px){
   .hero::after{background:linear-gradient(180deg,var(--hero-veil-0) 0%,var(--hero-veil) 30%,var(--hero-veil) 100%)}
-  .hero-grid{grid-template-columns:1fr;gap:28px;padding-block:40px 36px}
-  .portrait{max-width:128px}
+  .hero-grid{padding-block:40px 36px}
+  .portrait{max-width:156px}
   .portrait-frame{outline-offset:4px}
-  .monogram{font-size:2.6rem}
-  .portrait figcaption{display:none}
 }
 
 /* Recent */
@@ -283,7 +287,7 @@ h2{margin:0 0 16px;font-family:var(--font-display);font-weight:500;font-size:cla
         </figure>
         <div class="hero-text">
           <p class="coord"><span>Boise, Idaho</span><span>43.62&deg; N, 116.20&deg; W</span></p>
-          <h1>Richard <span class="nw">Acquah-Sarpong</span></h1>
+          <h1>Richard Acquah-Sarpong<span class="cred">, PhD</span></h1>
           <p class="role"><strong>Postdoctoral Research Fellow</strong>, Western Rural Development Center, University of Idaho. PhD in Applied Economics, Oregon State University.</p>
           <p class="bio">I am an applied microeconomist. I use quasi-experimental methods to study how place-based policies and climate risks shape where firms locate, whether they survive, and how they manage their finances. My recent work covers tiered minimum wages, state tax cuts, destructive wildfires and wildfire smoke across the American West.</p>
           <ul class="fields" aria-label="Fields">
@@ -387,8 +391,10 @@ h2{margin:0 0 16px;font-family:var(--font-display);font-weight:500;font-size:cla
               <p class="authors"><strong>Acquah-Sarpong, R.</strong>, Chen, Y. &amp; Lewin, P.</p>
               <p class="venue"><i>Annals of Regional Science</i>, revised and resubmitted</p>
               <div class="paper-actions">
+                <button class="act" type="button" aria-expanded="false" aria-controls="abs-survival">Abstract <svg class="ico chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
                 <a class="act" href="https://drive.google.com/file/d/1UueUuLoVfzUMz87uayl_ELGScWU7p5Dj/view?usp=sharing" target="_blank" rel="noopener">Manuscript <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11L11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
               </div>
+              <div class="abs" id="abs-survival" hidden><span class="abs-k">Abstract</span>In 2016, Oregon replaced its statewide minimum wage with a geographically tiered policy that set different minimum wages in urban and rural counties and committed to a schedule of wage increases between 2016 and 2021. Using proprietary establishment-level data from the National Establishment Time Series (NETS), we evaluate the policy&rsquo;s effect on establishments&rsquo; survival using a difference-in-differences discrete-time linear hazard model and cumulative survival model. Our estimates indicate a persistent increase in the annual probability of exit for incumbent establishments during the reform years (2016&ndash;2021). These repeated increases in exit risk accumulated over time, resulting in a significant, progressively larger decline in the probability of establishment survival among existing low-wage establishments during the post-reform period. We find limited evidence that the regional minimum-wage difference introduced by the policy had differential effects across urban and rural establishments. The effects are concentrated among small and financially vulnerable establishments.</div>
             </div>
           </article>
 
@@ -724,12 +730,19 @@ h2{margin:0 0 16px;font-family:var(--font-display);font-weight:500;font-size:cla
         contour(g, cols, rows, step, mn + (mx - mn) * lv / N);
       }
 
-      /* fire perimeter placement: in the free space right of the text, or tucked top-right on phones */
+      /* fire perimeter placement: below the name, in the free space right of the bio and buttons;
+         tucked top-right on phones */
       var hb = hero.getBoundingClientRect();
-      var tr = heroText ? heroText.getBoundingClientRect().right - hb.left : W;
+      var h1 = heroText ? heroText.querySelector('h1') : null;
+      var tr = 0;
+      if (heroText) Array.prototype.forEach.call(heroText.querySelectorAll('.role, .bio, .fields li, .actions > *'), function(el){
+        var rgt = el.getBoundingClientRect().right - hb.left; if (rgt > tr) tr = rgt;
+      });
+      if (!tr) tr = W;
+      var top = h1 ? h1.getBoundingClientRect().bottom - hb.top : H * .3;
       var free = W - tr, cx, cy, Rad, show = false;
       if (narrow) { Rad = Math.min(W * .19, 84); cx = W - Rad * .75; cy = Rad * 1.15 + 8; show = true; }
-      else if (free > 280) { Rad = Math.min(free * .34, H * .3, 190); cx = tr + free * .52; cy = H * .47; show = true; }
+      else if (free > 240) { Rad = Math.min(free * .34, (H - top - 40) / 2.6, 190); cx = tr + free * .5; cy = top + 24 + Rad * 1.25; show = Rad > 60; }
       hero.classList.toggle('has-perimeter', show && !narrow);
 
       var rng = mulberry(77);
