@@ -86,7 +86,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .hero{position:relative;isolation:isolate;overflow:hidden;background:var(--hero-bg);color:var(--hero-ink)}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-2;display:block}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--hero-veil) 0%,var(--hero-veil) 34%,var(--hero-veil-0) 74%)}
-.hero-grid{display:grid;grid-template-columns:minmax(0,256px) minmax(0,1fr);gap:56px;align-items:center;padding-block:76px 40px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,256px) minmax(0,1fr);gap:56px;align-items:center;padding-block:76px 72px}
 .portrait{margin:0}
 .portrait-frame{aspect-ratio:4/5;max-width:100%;background:var(--hero-panel);border:1px solid var(--hero-frame);outline:1px solid var(--hero-frame);outline-offset:6px;display:grid;place-items:center;overflow:hidden}
 .portrait-frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:54% 40%}
@@ -108,18 +108,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .btn-ember:hover{background:var(--hero-ink)}
 .btn-ghost{border-color:var(--hero-frame);color:var(--hero-ink);background:transparent}
 .btn-ghost:hover{background:var(--hero-hover);border-color:var(--hero-ink-3)}
-.hero-foot{display:flex;justify-content:flex-end;padding-bottom:22px}
-.legend{display:none;flex-wrap:wrap;gap:8px 16px;align-items:center;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.04em;color:var(--hero-ink-3)}
-.hero.has-perimeter .legend{display:flex}
-.legend span{display:inline-flex;align-items:center;gap:6px}
-.legend .l-line{color:var(--hero-line)} .legend .l-ember{color:var(--hero-ember)} .legend .l-dot{color:var(--hero-dot)}
 @media (max-width:900px){
-  .hero-grid{grid-template-columns:1fr;gap:30px;padding-block:48px 36px}
+  .hero-grid{grid-template-columns:1fr;gap:30px;padding-block:48px 56px}
   .portrait{max-width:184px}
 }
 @media (max-width:759px){
   .hero::after{background:linear-gradient(180deg,var(--hero-veil-0) 0%,var(--hero-veil) 30%,var(--hero-veil) 100%)}
-  .hero-grid{padding-block:40px 36px}
+  .hero-grid{padding-block:40px 52px}
   .portrait{max-width:156px}
   .portrait-frame{outline-offset:4px}
 }
@@ -309,15 +304,6 @@ h2{margin:0 0 16px;font-family:var(--font-display);font-weight:500;font-size:cla
               <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11L11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
-        </div>
-      </div>
-      <div class="hero-foot">
-        <div class="legend" aria-hidden="true">
-          <span>Illustrative map</span>
-          <span class="l-line"><svg width="22" height="8"><path d="M1 4h20" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>Index contour</span>
-          <span class="l-ember"><svg width="22" height="8"><path d="M1 4h20" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 3" fill="none"/></svg>Fire perimeter</span>
-          <span class="l-dot"><svg width="8" height="8"><circle cx="4" cy="4" r="2" fill="currentColor"/></svg>Establishment</span>
-          <span class="l-dot"><svg width="22" height="8"><path d="M1 4h15M13 1.5l3 2.5-3 2.5" stroke="currentColor" stroke-width="1.1" stroke-dasharray="3 2" fill="none"/></svg>Relocation</span>
         </div>
       </div>
     </div>
@@ -745,7 +731,6 @@ h2{margin:0 0 16px;font-family:var(--font-display);font-weight:500;font-size:cla
       var free = W - tr, cx, cy, Rad, show = false;
       if (narrow) { Rad = Math.min(W * .19, 84); cx = W - Rad * .75; cy = Rad * 1.15 + 8; show = true; }
       else if (free > 240) { Rad = Math.min(free * .34, (H - top - 40) / 2.6, 190); cx = tr + free * .5; cy = top + 24 + Rad * 1.25; show = Rad > 60; }
-      hero.classList.toggle('has-perimeter', show && !narrow);
 
       var rng = mulberry(77);
       var rad = function(th){ return Rad * (1 + .5 * (fbm(Math.cos(th) * 1.7 + 40, Math.sin(th) * 1.7 + 40) - .5) + .07 * Math.sin(3 * th + 1)); };
