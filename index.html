@@ -142,12 +142,6 @@ h2{margin:0 0 16px;font-family:var(--font-display);font-weight:500;font-size:cla
 @media (max-width:900px){.section{padding-block:64px}.sheet{grid-template-columns:1fr;gap:32px}.aside{position:static}}
 
 /* Research */
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
-.filter{display:inline-flex;align-items:center;gap:8px;font:500 .85rem/1 var(--font-body);padding:9px 14px;border-radius:999px;border:1px solid var(--rule-strong);background:transparent;color:var(--ink-2);cursor:pointer;transition:background-color .2s,color .2s,border-color .2s}
-.filter:hover{border-color:var(--ink-2);color:var(--ink)}
-.filter .n{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-3)}
-.filter[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.filter[aria-pressed="true"] .n{color:inherit;opacity:.7}
 .group + .group{margin-top:56px}
 .group-head{display:flex;align-items:baseline;gap:12px;padding-bottom:12px;border-bottom:1.5px solid var(--ink)}
 .group-head h3{margin:0;font:600 .76rem/1.4 var(--font-body);letter-spacing:.2em;text-transform:uppercase}
@@ -312,10 +306,10 @@ h2{margin:0 0 16px;font-family:var(--font-display);font-weight:500;font-size:cla
   <section class="recent" aria-label="Recent news">
     <div class="wrap">
       <p class="label">Recent</p>
-      <div class="news"><time>2026 &middot; Publication</time><p>&ldquo;Do tax cuts ease liquidity constraints?&rdquo; is out in <i>International Tax and Public Finance</i>.</p></div>
+      <div class="news"><time>Nov 2026 &middot; Conference</time><p>Presented &ldquo;Who Benefits from the Community Reinvestment Act?&rdquo; and served as a discussant at the North American Regional Science Council meeting.</p></div>
       <div class="news"><time>Jul 2026 &middot; Report</time><p>The WRDC released the <i>Western Region Household Survey Report</i>, from the WR-Stat 2024 baseline survey.</p></div>
+      <div class="news"><time>May 2026 &middot; Publication</time><p>&ldquo;Do tax cuts ease liquidity constraints?&rdquo; is out in <i>International Tax and Public Finance</i>.</p></div>
       <div class="news"><time>Mar 2026 &middot; Degree</time><p>Completed a PhD in Applied Economics at Oregon State University.</p></div>
-      <div class="news"><time>Feb 2026 &middot; Talk</time><p>Presented and served as discussant at the Western Regional Science Association meeting in Santa Fe.</p></div>
     </div>
   </section>
 
@@ -325,18 +319,11 @@ h2{margin:0 0 16px;font-family:var(--font-display);font-weight:500;font-size:cla
         <p class="label">Research</p>
         <h2 id="research-h">Firms, policy and risk in regional economies</h2>
         <p class="intro">Most of this work uses establishment-level data on business entry, exit, relocation and payment behaviour.</p>
-        <div class="filters" role="group" aria-label="Filter papers by topic">
-          <button class="filter" type="button" data-topic="all" aria-pressed="true">All <span class="n"></span></button>
-          <button class="filter" type="button" data-topic="wages" aria-pressed="false">Minimum wages <span class="n"></span></button>
-          <button class="filter" type="button" data-topic="tax" aria-pressed="false">Taxes <span class="n"></span></button>
-          <button class="filter" type="button" data-topic="fire" aria-pressed="false">Wildfires <span class="n"></span></button>
-          <button class="filter" type="button" data-topic="nutrition" aria-pressed="false">Nutrition programs <span class="n"></span></button>
-        </div>
       </div>
 
       <div class="content">
         <div class="group">
-          <div class="group-head"><h3>Publications</h3><span class="count"></span></div>
+          <div class="group-head"><h3>Publications</h3><span class="count">2</span></div>
 
           <article class="paper" data-topic="tax">
             <div class="paper-meta"><span class="status s-pub">Published</span><span class="meta-line">2026 &middot; Taxes</span></div>
@@ -368,7 +355,7 @@ h2{margin:0 0 16px;font-family:var(--font-display);font-weight:500;font-size:cla
         </div>
 
         <div class="group">
-          <div class="group-head"><h3>Under review</h3><span class="count"></span></div>
+          <div class="group-head"><h3>Under review</h3><span class="count">2</span></div>
 
           <article class="paper" data-topic="wages">
             <div class="paper-meta"><span class="status s-rr">Revised &amp; resubmitted</span><span class="meta-line">Minimum wages</span></div>
@@ -400,7 +387,7 @@ h2{margin:0 0 16px;font-family:var(--font-display);font-weight:500;font-size:cla
         </div>
 
         <div class="group">
-          <div class="group-head"><h3>Working papers</h3><span class="count"></span></div>
+          <div class="group-head"><h3>Working papers</h3><span class="count">3</span></div>
 
           <article class="paper" data-topic="fire">
             <div class="paper-meta"><span class="status s-wp">Working paper</span><span class="meta-line">Wildfires</span></div>
@@ -789,29 +776,6 @@ h2{margin:0 0 16px;font-family:var(--font-display);font-weight:500;font-size:cla
     try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(){ schedule(true); }); } catch (e) {}
     new MutationObserver(function(){ schedule(true); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   }
-
-  /* ---------- Research filters ---------- */
-  var papers = Array.prototype.slice.call(document.querySelectorAll('.paper'));
-  var groups = Array.prototype.slice.call(document.querySelectorAll('.group'));
-  var filters = Array.prototype.slice.call(document.querySelectorAll('.filter'));
-  var countGroups = function(){
-    groups.forEach(function(g){
-      var n = g.querySelectorAll('.paper:not([hidden])').length;
-      g.hidden = n === 0;
-      var c = g.querySelector('.count'); if (c) c.textContent = n;
-    });
-  };
-  filters.forEach(function(btn){
-    var t = btn.getAttribute('data-topic');
-    var n = t === 'all' ? papers.length : papers.filter(function(p){ return p.getAttribute('data-topic') === t; }).length;
-    var span = btn.querySelector('.n'); if (span) span.textContent = n;
-    btn.addEventListener('click', function(){
-      filters.forEach(function(b){ b.setAttribute('aria-pressed', String(b === btn)); });
-      papers.forEach(function(p){ p.hidden = !(t === 'all' || p.getAttribute('data-topic') === t); });
-      countGroups();
-    });
-  });
-  countGroups();
 
   /* ---------- Abstract toggles ---------- */
   Array.prototype.forEach.call(document.querySelectorAll('.act[aria-controls]'), function(b){
