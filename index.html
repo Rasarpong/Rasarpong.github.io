@@ -100,6 +100,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .role{margin:0;font-size:1.06rem;line-height:1.55;color:var(--hero-ink-2);max-width:50ch}
 .role strong{color:var(--hero-ink);font-weight:600}
 .bio{margin:20px 0 0;max-width:60ch;color:var(--hero-ink);opacity:.92}
+.bio + .bio{margin-top:12px}
+.bio-link{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.bio-link:hover{text-decoration-thickness:2px}
 .fields{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0;padding:0;list-style:none}
 .fields li{font-size:.8rem;font-weight:500;letter-spacing:.01em;color:var(--hero-ink-2);border:1px solid var(--hero-frame);border-radius:999px;padding:5px 12px}
 .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
@@ -277,8 +280,9 @@ h2{margin:0 0 16px;font-family:var(--font-display);font-weight:500;font-size:cla
         <div class="hero-text">
           <p class="coord"><span>Boise, Idaho</span><span>43.62&deg; N, 116.20&deg; W</span></p>
           <h1>Richard Acquah-Sarpong<span class="cred">, PhD</span></h1>
-          <p class="role"><strong>Postdoctoral Research Fellow</strong>, Western Rural Development Center, University of Idaho. PhD in Applied Economics, Oregon State University.</p>
-          <p class="bio">I study how local economies respond to policy changes and environmental shocks, with a focus on rural communities in the American West. I look at these questions through the businesses that anchor local economies: whether they survive, relocate, or stay financially sound. One line of my work evaluates place-based policies, such as Oregon's tiered minimum wage and the Kansas tax experiment. Another examines natural hazards, from destructive wildfires to wildfire smoke. I combine establishment-level microdata with quasi-experimental designs, and at the Western Rural Development Center I turn findings into reports and briefs for policymakers and communities.</p>
+          <p class="role">I am a <strong>Postdoctoral Research Fellow</strong> at the Western Rural Development Center at the University of Idaho, based in Boise. I hold a PhD in Applied Economics from Oregon State University.</p>
+          <p class="bio">I use quasi-experimental methods to study how businesses respond to place-based policies and wildfire risk, and what those responses mean for local economic development.</p>
+          <p class="bio">My current research examines how businesses adapt to large and destructive wildfires in the western United States. I study whether businesses relocate after a fire, where they move, and how affected neighborhoods recover. <a class="bio-link" href="#paper-fire">Explore preliminary findings</a>.</p>
           <ul class="fields" aria-label="Fields">
             <li>Regional economics</li>
             <li>Public economics</li>
@@ -389,7 +393,7 @@ h2{margin:0 0 16px;font-family:var(--font-display);font-weight:500;font-size:cla
         <div class="group">
           <div class="group-head"><h3>Working papers</h3><span class="count">3</span></div>
 
-          <article class="paper" data-topic="fire">
+          <article class="paper" id="paper-fire" data-topic="fire">
             <div class="paper-meta"><span class="status s-wp">Working paper</span><span class="meta-line">Wildfires</span></div>
             <div class="paper-body">
               <h4 class="paper-title"><a href="https://drive.google.com/file/d/1OR45tvOGyXoM6djQUAOZHrJz_0h6k6e/view?usp=sharing" target="_blank" rel="noopener">The impact of destructive wildfires on business relocation</a></h4>
